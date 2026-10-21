@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+/*
+ * El diseño de la app usa la escala de grises (sección 9 de la spec): la
+ * jerarquía se construye con peso tipográfico, tamaño y contraste, y los avisos
+ * se distinguen con icono y borde, no con color. Es una guía de diseño, no una
+ * restricción técnica: la paleta completa de Tailwind sigue disponible.
+ */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white font-sans text-gray-900 antialiased;
+  }
+
+  /* Foco visible en toda la app (accesibilidad AA, sección 9). */
+  :focus-visible {
+    @apply outline-none ring-2 ring-gray-900 ring-offset-2 ring-offset-white;
+  }
+}
+
+/* El mapa conserva sus colores; sólo se ajusta el marco para que encaje. */
+.leaflet-container {
+  @apply bg-gray-100 font-sans;
+  isolation: isolate;
+}
+
+.leaflet-control-attribution {
+  @apply bg-white/85 text-[10px];
+}
+
+.leaflet-bar,
+.leaflet-control-zoom a {
+  @apply border-gray-300 bg-white text-gray-900;
+}
+
+.leaflet-control-zoom a:hover {
+  @apply bg-gray-100;
+}
+
+/* Marcadores propios: se dibujan con divIcon. */
+.wtl-marker {
+  @apply flex items-center justify-center;
+  background: transparent;
+  border: 0;
+}
