@@ -42,7 +42,7 @@ export function Modal({ open, onClose, title, description, children, footer, siz
   if (!open) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center">
+    <div className="fixed inset-0 z-[2000] flex items-end justify-center sm:items-center">
       <div
         className="absolute inset-0 bg-black/45"
         onClick={onClose}
@@ -56,7 +56,7 @@ export function Modal({ open, onClose, title, description, children, footer, siz
         aria-label={title}
         tabIndex={-1}
         className={cn(
-          'relative flex max-h-[90dvh] w-full flex-col rounded-t-2xl border border-gray-200 bg-white shadow-lg',
+          'relative flex max-h-[calc(100dvh-1rem)] sm:max-h-[90dvh] w-full flex-col rounded-t-2xl border border-gray-200 bg-white shadow-lg',
           'sm:rounded-2xl',
           SIZE[size],
         )}
@@ -70,7 +70,7 @@ export function Modal({ open, onClose, title, description, children, footer, siz
         </div>
         <div className="min-h-0 flex-1 overflow-y-auto px-4 py-4">{children}</div>
         {footer ? (
-          <div className="flex items-center justify-end gap-2 border-t border-gray-200 px-4 py-3">{footer}</div>
+          <div className="flex items-center justify-end gap-2 border-t border-gray-200 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">{footer}</div>
         ) : null}
       </div>
     </div>,
